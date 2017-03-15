@@ -7,17 +7,17 @@ defmodule WaterCooler.WWW do
   config :static, "./public"
   config :templates, "./templates"
 
-  route "/" do
-    get(_request) ->
+  route [], request do
+    :GET ->
       ok(__MODULE__.home_page())
-    post(%{body: body}) ->
-      {:ok, %{message: message}} = parse_publish_form(body)
+    :POST ->
+      {:ok, %{message: message}} = parse_publish_form(request.body)
       {:ok, _} = ChatRoom.publish(message)
       redirect("/")
   end
 
-  route "/updates" do
-    get(_request) ->
+  route ["updates"] do
+    :GET ->
       {:ok, _} = ChatRoom.join()
       SSE.stream()
   end
