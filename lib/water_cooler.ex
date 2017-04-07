@@ -1,4 +1,4 @@
-defmodule WaterCooler.WWW do
+defmodule WaterCooler do
   use Tokumei
 
   alias WaterCooler.ChatRoom

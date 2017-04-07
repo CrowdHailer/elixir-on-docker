@@ -5,4 +5,5 @@
   "mime": {:hex, :mime, "1.1.0", "01c1d6f4083d8aa5c7b8c246ade95139620ef8effb009edde934e0ec3b28090a", [:mix], []},
   "plug": {:hex, :plug, "1.2.4", "1d6529a4ac87f844cee2b76f3d8e8d192e152296d427ebe476753dfca148cfbe", [:mix], [{:cowboy, "~> 1.0", [hex: :cowboy, optional: true]}, {:mime, "~> 1.0", [hex: :mime, optional: false]}]},
   "raxx": {:hex, :raxx, "0.10.5", "5df8e0537aee1e507eeb4a9b75364c653f52e18f2a9d4137de205934b64931af", [:mix], [{:http_status, "~> 0.2", [hex: :http_status, optional: false]}, {:mime, "~> 1.0", [hex: :mime, optional: false]}, {:plug, "~> 1.2.2", [hex: :plug, optional: false]}]},
+  "raxx_cookie": {:hex, :raxx_cookie, "0.1.0", "caa7304180dcedfc166d28648c3a1baa142d89e2aa9a5406616f76686a8bedb7", [:mix], []},
   "raxx_static": {:hex, :raxx_static, "0.2.0", "6d14b0837b65d7f80608159d97e23758c07d4efae84d62208bc3552fbf09dee8", [:mix], [{:raxx, "~> 0.10.0", [hex: :raxx, optional: false]}]}}

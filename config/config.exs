@@ -1,3 +1,4 @@
 use Mix.Config
 
-import_config "../apps/*/config/config.exs"
+config :water_cooler,
+  server: [port: 8080]
