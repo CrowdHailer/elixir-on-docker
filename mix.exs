@@ -4,21 +4,22 @@ defmodule WaterCooler.Mixfile do
   def project do
     [app: :water_cooler,
      version: "0.0.1",
-     elixir: "~> 1.3",
+     elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
   end
 
   def application do
-    [applications: [:logger, :gproc],
+    [extra_applications: [:logger],
      mod: {WaterCooler, []}]
   end
 
   defp deps do
     [
-      {:tokumei, path: "../app"},
-      {:ace_http, "~> 0.1.3"},
+      {:tokumei, "~> 0.6.0"},
+      {:ace_http, "~> 0.4.0"},
+      {:server_sent_event, "~> 0.1.0"},
       {:gproc, "0.3.1"}
     ]
   end
