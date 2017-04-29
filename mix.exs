@@ -12,7 +12,7 @@ defmodule WaterCooler.Mixfile do
 
   def application do
     [extra_applications: [:logger],
-     mod: {WaterCooler, []}]
+     mod: {WaterCooler.Application, []}]
   end
 
   defp deps do
