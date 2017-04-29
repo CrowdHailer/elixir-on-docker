@@ -13,6 +13,12 @@ iex -S mix
 
 Visit http://localhost:8080
 
+## Run tests
+
+
+```
+mix test
+```
 
 ## TODO
 
