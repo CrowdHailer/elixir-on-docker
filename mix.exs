@@ -17,7 +17,7 @@ defmodule WaterCooler.Mixfile do
 
   defp deps do
     [
-      {:tokumei, "~> 0.6.0"},
+      {:tokumei, "~> 0.6.3"},
       {:ace_http, "~> 0.4.0"},
       {:server_sent_event, "~> 0.1.0"},
       {:gproc, "0.3.1"}

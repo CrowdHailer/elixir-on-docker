@@ -11,18 +11,11 @@ defmodule WaterCooler.Application do
     certificate_key_path =
       Application.app_dir(:water_cooler, "priv/localhost/certificate_key.pem")
 
-    app = {WaterCooler.WWW, []}
+    tls_options = [certificate: certificate_path, certificate_key: certificate_key_path]
 
     children = [
-      worker(Ace.HTTP, [app, [
-        port: 8080,
-        name: WaterCooler.WWW
-      ]]),
-      worker(Ace.HTTPS, [app, [
-        port: 8443,
-        certificate: certificate_path,
-        certificate_key: certificate_key_path
-      ]])
+      worker(WaterCooler.WWW, [[port: 8080]], id: :http),
+      worker(WaterCooler.WWW, [[port: 8443, tls: tls_options]], id: :https)
     ]
 
     opts = [strategy: :one_for_one, name: WaterCooler.Supervisor]
