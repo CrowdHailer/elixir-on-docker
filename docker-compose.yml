@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  water_cooler:
+    image: "water_cooler:release"
+    environment:
+      - PORT=8080
+    command: "foreground"
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+  water_cooler_build:
+    image: "water_cooler:build"
+    environment:
+      - PORT=8080
+    command: "mix run --no-halt"
+    ports:
+      - "8081:8080"
+      - "8444:8443"

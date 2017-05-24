@@ -20,7 +20,8 @@ defmodule WaterCooler.Mixfile do
       {:tokumei, "~> 0.6.3"},
       {:ace_http, "~> 0.4.0"},
       {:server_sent_event, "~> 0.1.0"},
-      {:gproc, "0.3.1"}
+      {:gproc, "0.3.1"},
+      {:mix_docker, "~> 0.4.2"}
     ]
   end
 end
