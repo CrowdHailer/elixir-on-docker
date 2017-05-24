@@ -1,4 +1,5 @@
 use Mix.Config
 
 config :water_cooler,
-  server: [port: 8080]
+  port: {:system, :port, "PORT", 8080},
+  secure_port: {:system, :port, "SECURE_PORT", 8443}
