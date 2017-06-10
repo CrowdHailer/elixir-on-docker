@@ -1,6 +1,8 @@
 %{"ace": {:hex, :ace, "0.9.0", "c7255dea811db3ec8b4d461c852f746896de800aba94d3a3afaa0e165edc34e7", [:mix], [], "hexpm"},
   "ace_http": {:hex, :ace_http, "0.4.5", "3227ec8407f7eecbeeb9026b854c07b28c4f6b2f9617d99d1997788a8c962b46", [:mix], [{:ace, "~> 0.9.0", [hex: :ace, repo: "hexpm", optional: false]}, {:http_status, "~> 0.2.0", [hex: :http_status, repo: "hexpm", optional: false]}, {:raxx, "~> 0.11.1", [hex: :raxx, repo: "hexpm", optional: false]}], "hexpm"},
   "distillery": {:hex, :distillery, "1.4.0", "d633cd322c8efa0428082b00b7f902daf8caa166d45f9022bbc19a896d2e1e56", [:mix], [], "hexpm"},
+  "exfswatch": {:hex, :exfswatch, "0.4.2", "d88a63b5c2f8f040230d22010588ff73286fd1aef32564115afa3051eaa4391d", [:mix], [], "hexpm"},
+  "exsync": {:hex, :exsync, "0.1.4", "f5800f5c3137271bf7c0f5ca623919434f91798e1be1b9d50fc2c59168d44f17", [:mix], [{:exfswatch, "~> 0.4", [hex: :exfswatch, repo: "hexpm", optional: false]}], "hexpm"},
   "gproc": {:hex, :gproc, "0.3.1", "ec14f40cb941bde3f940de59c11e59beb2977e90dbae72fab3ddf77743fd4ea9", [:rebar], [], "hexpm"},
   "http_status": {:hex, :http_status, "0.2.1", "74fa942b5874966a25088162e5297ad52dd5e6a29b88ad4a73953aa55e58e3bb", [:mix], [], "hexpm"},
   "mime": {:hex, :mime, "1.1.0", "01c1d6f4083d8aa5c7b8c246ade95139620ef8effb009edde934e0ec3b28090a", [:mix], [], "hexpm"},

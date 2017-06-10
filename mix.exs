@@ -21,7 +21,8 @@ defmodule WaterCooler.Mixfile do
       {:ace_http, "~> 0.4.0"},
       {:server_sent_event, "~> 0.1.0"},
       {:gproc, "0.3.1"},
-      {:mix_docker, "~> 0.4.2"}
+      {:mix_docker, "~> 0.4.2"},
+      {:exsync, "~> 0.1.4"}
     ]
   end
 end
