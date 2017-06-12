@@ -8,12 +8,12 @@ defmodule WaterCooler.ChatRoom do
   end
 
   def publish(message, room \\ @default_room) do
-    :gproc.send({:p, :l, room}, post(message))
+    :gproc.send({:p, :g, room}, post(message))
     {:ok, message}
   end
 
   def join(room \\ @default_room) do
-    :gproc.reg({:p, :l, room})
+    :gproc.reg({:p, :g, room})
     {:ok, room}
   end
 end

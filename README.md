@@ -6,18 +6,22 @@ Example chat application built with [Tokumei](https://hex.pm/packages/tokumei).
 
 ```
 cd water_cooler
-mix deps.get
-
-iex -S mix
+docker-compose up
+docker-compose scale web=3
 ```
 
 Visit http://localhost:8080
+
+```
+for i in `docker ps -q`; do echo $i; echo " : "; docker inspect $i | grep -i ipaddress | grep -v null | cut -d ':' -f 2; done
+```
+
 
 ## Run tests
 
 
 ```
-mix test
+docker run web mix test
 ```
 
 ## TODO

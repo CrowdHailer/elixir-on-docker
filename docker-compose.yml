@@ -1,19 +1,15 @@
 version: '2'
 
 services:
-  water_cooler:
-    image: "water_cooler:release"
+  web:
+    build:
+      context: "."
+      dockerfile: "Dockerfile"
     environment:
       - PORT=8080
-    command: "foreground"
-    ports:
-      - "8080:8080"
-      - "8443:8443"
-  water_cooler_build:
-    image: "water_cooler:build"
-    environment:
-      - PORT=8080
-    command: "mix run --no-halt"
-    ports:
-      - "8081:8080"
-      - "8444:8443"
+      - SECURE_PORT=8443
+      - SERVICE_NAME=web
+      - ERLANG_COOKIE=asd&%rewss
+    volumes:
+      - .:/app
+    command: sh start.sh

@@ -22,7 +22,8 @@ defmodule WaterCooler.Mixfile do
       {:server_sent_event, "~> 0.1.0"},
       {:gproc, "0.3.1"},
       {:mix_docker, "~> 0.4.2"},
-      {:exsync, "~> 0.1.4"}
+      {:exsync, "~> 0.1.4"},
+      {:wobserver, "~> 0.1.7"}
     ]
   end
 end

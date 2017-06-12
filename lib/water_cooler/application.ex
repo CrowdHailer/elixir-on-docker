@@ -13,7 +13,8 @@ defmodule WaterCooler.Application do
 
     children = [
       worker(WaterCooler.WWW, [[port: port()]], id: :http),
-      worker(WaterCooler.WWW, [[port: secure_port(), tls: tls_options]], id: :https)
+      worker(WaterCooler.WWW, [[port: secure_port(), tls: tls_options]], id: :https),
+      worker(WaterCooler.DNSDiscovery, [System.get_env("SERVICE_NAME")])
     ]
 
     opts = [strategy: :one_for_one, name: WaterCooler.Supervisor]
