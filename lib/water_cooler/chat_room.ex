@@ -8,12 +8,15 @@ defmodule WaterCooler.ChatRoom do
   end
 
   def publish(message, room \\ @default_room) do
-    :gproc.send({:p, :g, room}, post(message))
+    for client <- :pg2.get_members(room) do
+      send(client, {WaterCooler.ChatRoom, message})
+    end
     {:ok, message}
   end
 
   def join(room \\ @default_room) do
-    :gproc.reg({:p, :g, room})
+    :ok = :pg2.create(:chat)
+    :ok = :pg2.join(room, self())
     {:ok, room}
   end
 end
