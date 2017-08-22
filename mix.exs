@@ -17,12 +17,10 @@ defmodule WaterCooler.Mixfile do
 
   defp deps do
     [
-      {:tokumei, "~> 0.6.3"},
-      {:ace_http, "~> 0.4.0"},
-      {:server_sent_event, "~> 0.1.0"},
-      {:mix_docker, "~> 0.4.2"},
-      {:exsync, "~> 0.1.4"},
-      {:wobserver, "~> 0.1.7"}
+      {:ace, "~> 0.12.1"},
+      {:server_sent_event, "~> 0.2.0"},
+      {:exsync, "~> 0.2.0"},
+      {:wobserver, "~> 0.1.8"}
     ]
   end
 end

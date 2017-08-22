@@ -21,7 +21,7 @@ for i in `docker ps -q`; do echo $i; echo " : "; docker inspect $i | grep -i ipa
 
 
 ```
-docker run web mix test
+docker-compose run web mix test
 ```
 
 ## TODO

@@ -11,10 +11,13 @@ defmodule WaterCooler.Application do
       certificate_key: certificate_key_path()
     ]
 
+    options = [port: secure_port(), certfile: certificate_path, keyfile: certificate_key_path()]
+
     children = [
-      worker(WaterCooler.WWW, [[port: port()]], id: :http),
-      worker(WaterCooler.WWW, [[port: secure_port(), tls: tls_options]], id: :https),
-      worker(WaterCooler.DNSDiscovery, [System.get_env("SERVICE_NAME")])
+      # worker(WaterCooler.WWW, [[port: port()]], id: :http),
+      # worker(WaterCooler.WWW, [[port: secure_port(), tls: tls_options]], id: :https),
+      supervisor(Ace.HTTP2.Service, [{WaterCooler.WWW, []}, options]),
+      worker(WaterCooler.DNSDiscovery, [System.get_env("SERVICE_NAME"), options])
     ]
 
     opts = [strategy: :one_for_one, name: WaterCooler.Supervisor]
