@@ -16,20 +16,20 @@ defmodule WaterCooler.WWW do
 
   def handle_info({stream, request}, :ready) do
     case {request.method, request.path} do
-      {"GET", "/"} ->
+      {:GET, "/"} ->
         body = home_page()
         response = Ace.Response.new(200, [], body)
         Ace.HTTP2.Server.send_response(stream, response)
         {:noreply, :done}
-      {"GET", "/updates"} ->
+      {:GET, "/updates"} ->
         {:ok, _} = ChatRoom.join()
         response = Ace.Response.new(200, [{"content-type", "text/event-stream"}], true)
         Ace.HTTP2.Server.send_response(stream, response)
         {:noreply, {:updates, stream}}
-      {"POST", "/"} ->
+      {:POST, "/"} ->
         true = request.body
         {:noreply, :reading}
-      {"GET", _} ->
+      {:GET, _} ->
         body = not_found()
         response = Ace.Response.new(404, [], body)
         Ace.HTTP2.Server.send_response(stream, response)

@@ -6,7 +6,7 @@ Example chat application built with [Tokumei](https://hex.pm/packages/tokumei).
 
 ```
 cd water_cooler
-docker-compose up
+docker-compose up -d
 docker-compose scale web=3
 ```
 

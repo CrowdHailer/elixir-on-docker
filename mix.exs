@@ -17,7 +17,7 @@ defmodule WaterCooler.Mixfile do
 
   defp deps do
     [
-      {:ace, "~> 0.12.1"},
+      {:ace, "~> 0.13.0"},
       {:server_sent_event, "~> 0.2.0"},
       {:exsync, "~> 0.2.0"},
       {:wobserver, "~> 0.1.8"}

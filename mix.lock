@@ -1,4 +1,4 @@
-%{"ace": {:hex, :ace, "0.12.1", "c3a997c582158a2f09c99cbc596a53fbb77091f9e7d951e7d0c3d46a9f9ca1f9", [], [{:hpack, "~> 0.2.3", [hex: :hpack_erl, repo: "hexpm", optional: false]}, {:raxx, "~> 0.11.1", [hex: :raxx, repo: "hexpm", optional: false]}], "hexpm"},
+%{"ace": {:hex, :ace, "0.13.0", "f135fbbb24261ff820554fdd655fc77ae7059748cd651a4626493fe75d7d0c80", [:mix], [{:hpack, "~> 0.2.3", [hex: :hpack_erl, repo: "hexpm", optional: false]}, {:raxx, "~> 0.11.1", [hex: :raxx, repo: "hexpm", optional: false]}], "hexpm"},
   "certifi": {:hex, :certifi, "2.0.0", "a0c0e475107135f76b8c1d5bc7efb33cd3815cb3cf3dea7aefdd174dabead064", [], [], "hexpm"},
   "cowboy": {:hex, :cowboy, "1.1.2", "61ac29ea970389a88eca5a65601460162d370a70018afe6f949a29dca91f3bb0", [], [{:cowlib, "~> 1.0.2", [hex: :cowlib, repo: "hexpm", optional: false]}, {:ranch, "~> 1.3.2", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"},
   "cowlib": {:hex, :cowlib, "1.0.2", "9d769a1d062c9c3ac753096f868ca121e2730b9a377de23dec0f7e08b1df84ee", [], [], "hexpm"},
