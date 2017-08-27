@@ -1,8 +1,65 @@
+defmodule Raxx.Blueprint do
+  @moduledoc """
+  Route requests based on API Blueprint
+  """
+
+  # elements should be api elements in the future
+  defmacro __using__(blueprint) do
+    actions = blueprint_to_actions(blueprint)
+
+    routing_ast = for {method, path, module} <- actions do
+      quote do
+        def handle_headers(request = %{method: unquote(method), path: unquote(path)}, state) do
+          # DEBT live in a state, needs message monad
+          Process.put({Raxx.Blueprint, :handler}, module)
+          return = unquote(module).handle_headers(request, state)
+        end
+      end
+    end
+
+    quote do
+      unquote(routing_ast)
+
+      def handle_fragment(fragment, state) do
+        module = Process.put({Raxx.Blueprint, :handler})
+        unquote(module).handle_fragment(fragment, state)
+      end
+
+      def handle_trailers(trailers, state) do
+        module = Process.put({Raxx.Blueprint, :handler})
+        unquote(module).handle_trailers(trailers, state)
+      end
+    end
+  end
+
+  defp blueprint_to_actions(parsed) do
+    Enum.flat_map(parsed, fn({path, actions}) ->
+      Enum.map(actions, fn({method, module}) ->
+        {method, path, module}
+      end)
+    end)
+  end
+
+  defp path_template_to_match(path_template) do
+    path_template
+    |> Raxx.Request.split_path()
+    |> template_segment_to_match()
+  end
+
+  defp template_segment_to_match(segment) do
+    case String.split(segment, ~r/[{}]/) do
+      [raw] ->
+        raw
+      ["", _name, ""] ->
+        Macro.var(:_, nil)
+    end
+  end
+end
+
 defmodule WaterCooler.WWW do
   use GenServer
 
   alias WaterCooler.ChatRoom
-  require ChatRoom
   require ChatRoom
 
   require EEx
