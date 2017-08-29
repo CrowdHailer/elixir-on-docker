@@ -8,26 +8,33 @@ defmodule Raxx.Blueprint do
     actions = blueprint_to_actions(blueprint)
 
     routing_ast = for {method, path, module} <- actions do
+      path = path_template_to_match(path)
       quote do
         def handle_headers(request = %{method: unquote(method), path: unquote(path)}, state) do
           # DEBT live in a state, needs message monad
-          Process.put({Raxx.Blueprint, :handler}, module)
+          Process.put({Raxx.Blueprint, :handler}, unquote(module))
           return = unquote(module).handle_headers(request, state)
         end
       end
     end
 
     quote do
+      use Raxx.App
       unquote(routing_ast)
 
       def handle_fragment(fragment, state) do
-        module = Process.put({Raxx.Blueprint, :handler})
-        unquote(module).handle_fragment(fragment, state)
+        module = Process.get({Raxx.Blueprint, :handler})
+        module.handle_fragment(fragment, state)
       end
 
       def handle_trailers(trailers, state) do
-        module = Process.put({Raxx.Blueprint, :handler})
-        unquote(module).handle_trailers(trailers, state)
+        module = Process.get({Raxx.Blueprint, :handler})
+        module.handle_trailers(trailers, state)
+      end
+
+      def handle_info(info, state) do
+        module = Process.get({Raxx.Blueprint, :handler})
+        module.handle_info(info, state)
       end
     end
   end
@@ -43,7 +50,7 @@ defmodule Raxx.Blueprint do
   defp path_template_to_match(path_template) do
     path_template
     |> Raxx.Request.split_path()
-    |> template_segment_to_match()
+    |> Enum.map(&template_segment_to_match/1)
   end
 
   defp template_segment_to_match(segment) do
@@ -57,14 +64,82 @@ defmodule Raxx.Blueprint do
 end
 
 defmodule WaterCooler.WWW do
-  use GenServer
+  defmodule HomePage do
+    use Raxx.App
+
+    require EEx
+
+    EEx.function_from_file(:defp, :home_page, Path.join(__DIR__, "./templates/home_page.html.eex"), [])
+
+    def handle_headers(request, config) do
+      body = home_page()
+      Raxx.Response.new(:ok, [{"content-type", "text/html"}], body)
+    end
+  end
+
+  defmodule SubscribeToMessages do
+    use Raxx.App
+
+    alias WaterCooler.ChatRoom
+    require ChatRoom
+
+    def handle_headers(request, config) do
+      {:ok, _} = ChatRoom.join()
+      response = Raxx.Response.new(:ok, [{"content-type", "text/event-stream"}], true)
+      response
+    end
+  end
+
+  defmodule PublishMessage do
+    use Raxx.App
+
+    alias WaterCooler.ChatRoom
+    require ChatRoom
+
+    def handle_headers(request, config) do
+      {[], {:reading, ""}}
+    end
+
+    def handle_fragment(fragment, {:reading, buffer}) do
+      {[], {:reading, buffer <> fragment}}
+    end
+
+    def handle_trailers([], {:reading, body}) do
+      {:ok, %{message: message}} = parse_publish_form(body)
+      {:ok, _} = ChatRoom.publish(message)
+      response = Raxx.Response.new(303, [{"location", "/"}], false)
+    end
+
+    def parse_publish_form(raw) do
+      %{"message" => message} = URI.decode_www_form(raw) |> URI.decode_query
+      {:ok, %{message: message}}
+    end
+
+  end
+  def PublishMessage do
+    use Raxx.Unary
+
+    def handle_request(request, config) do
+      {:ok, %{message: message}} = parse_publish_form(request.body)
+      {:ok, _} = ChatRoom.publish(message)
+      Raxx.Response.new(303, [{"location", "/"}], false)
+    end
+  end
+  use Raxx.Blueprint, [
+    {"/", [
+      GET: HomePage,
+      POST: PublishMessage]},
+    {"/updates", [
+      GET: SubscribeToMessages
+    ]}
+  ]
 
   alias WaterCooler.ChatRoom
   require ChatRoom
-
   require EEx
 
   EEx.function_from_file(:defp, :home_page, Path.join(__DIR__, "./templates/home_page.html.eex"), [])
+
   EEx.function_from_file(:defp, :not_found, Path.join(__DIR__, "./templates/not_found.html.eex"), [])
 
   def start_link() do

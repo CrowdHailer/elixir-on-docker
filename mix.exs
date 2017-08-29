@@ -17,7 +17,7 @@ defmodule WaterCooler.Mixfile do
 
   defp deps do
     [
-      {:ace, "~> 0.13.0"},
+      {:ace, github: "crowdhailer/ace", ref: "f634352de73cbf5bddee21814c36f2a244f750f4"},
       {:server_sent_event, "~> 0.2.0"},
       {:exsync, "~> 0.2.0"},
       {:wobserver, "~> 0.1.8"}
