@@ -16,7 +16,7 @@ defmodule WaterCooler.Application do
     children = [
       # worker(WaterCooler.WWW, [[port: port()]], id: :http),
       # worker(WaterCooler.WWW, [[port: secure_port(), tls: tls_options]], id: :https),
-      supervisor(Ace.HTTP2.Service, [{Ace.HTTP2.Worker, [{WaterCooler.WWW, :config}]}, options]),
+      supervisor(Ace.HTTP2.Service, [{WaterCooler.WWW, :config}, options]),
       worker(WaterCooler.DNSDiscovery, [System.get_env("SERVICE_NAME"), options])
     ]
 
