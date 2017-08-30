@@ -6,9 +6,11 @@ defmodule WaterCooler.WWW do
 
     EEx.function_from_file(:defp, :home_page, Path.join(__DIR__, "./templates/home_page.html.eex"), [])
 
-    def handle_headers(request, config) do
+    def handle_headers(_request, _config) do
       body = home_page()
-      Raxx.Response.new(:ok, [{"content-type", "text/html"}], body)
+      Raxx.response(:ok)
+      |> Raxx.set_header("content-type", "text/html")
+      |> Raxx.set_body(body)
     end
   end
 
@@ -18,10 +20,11 @@ defmodule WaterCooler.WWW do
     alias WaterCooler.ChatRoom
     require ChatRoom
 
-    def handle_headers(request, config) do
+    def handle_headers(_request, _config) do
       {:ok, _} = ChatRoom.join()
-      response = Raxx.Response.new(:ok, [{"content-type", "text/event-stream"}], true)
-      response
+      Raxx.response(:ok)
+      |> Raxx.set_header("content-type", "text/event-stream")
+      |> Raxx.set_body(true)
     end
 
     def handle_info(ChatRoom.post(data), config) do
@@ -36,7 +39,7 @@ defmodule WaterCooler.WWW do
     alias WaterCooler.ChatRoom
     require ChatRoom
 
-    def handle_headers(request, config) do
+    def handle_headers(_request, _config) do
       {[], {:reading, ""}}
     end
 
@@ -47,7 +50,8 @@ defmodule WaterCooler.WWW do
     def handle_trailers([], {:reading, body}) do
       {:ok, %{message: message}} = parse_publish_form(body)
       {:ok, _} = ChatRoom.publish(message)
-      response = Raxx.Response.new(303, [{"location", "/"}], false)
+      Raxx.response(:see_other)
+      |> Raxx.set_header("location", "/")
     end
 
     def parse_publish_form(raw) do

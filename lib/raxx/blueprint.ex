@@ -51,7 +51,7 @@ defmodule Raxx.Blueprint do
 
   defp path_template_to_match(path_template) do
     path_template
-    |> Raxx.Request.split_path()
+    |> Raxx.split_path()
     |> Enum.map(&template_segment_to_match/1)
   end
 
