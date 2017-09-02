@@ -1,4 +1,9 @@
 defmodule WaterCooler.WWW do
+  @external_resource "./www.apib"
+
+  use Raxx.Blueprint, "./www.apib"
+  use Raxx.Static, "./public"
+
   defmodule HomePage do
     use Raxx.Server
 
@@ -29,7 +34,8 @@ defmodule WaterCooler.WWW do
 
     def handle_info(ChatRoom.post(data), config) do
       data = ServerSentEvent.serialize(%ServerSentEvent{lines: [data], type: "chat"})
-      {[%{data: data, end_stream: false}], config}
+      fragment = Raxx.fragment(data)
+      {[fragment], config}
     end
   end
 
@@ -60,12 +66,5 @@ defmodule WaterCooler.WWW do
     end
 
   end
-  use Raxx.Blueprint, [
-    {"/", [
-      GET: HomePage,
-      POST: PublishMessage]},
-    {"/updates", [
-      GET: SubscribeToMessages
-    ]}
-  ]
+
 end
