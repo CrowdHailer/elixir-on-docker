@@ -15,7 +15,7 @@ defmodule WaterCooler.ChatRoom do
   end
 
   def join(room \\ @default_room) do
-    :ok = :pg2.create(:chat)
+    :ok = :pg2.create(room)
     :ok = :pg2.join(room, self())
     {:ok, room}
   end
