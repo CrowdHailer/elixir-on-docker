@@ -4,6 +4,8 @@ set -e
 
 mix deps.get
 
+mix compile
+
 echo $(hostname -I)
 echo $SERVICE_NAME
 echo $ERLANG_COOKIE

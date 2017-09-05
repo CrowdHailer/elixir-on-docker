@@ -13,7 +13,7 @@ docker-compose scale web=3
 Visit port 8080 on one of the running docker containers
 
 ```
-for i in `sudo docker ps -q`; do echo $i; echo " : "; sudo docker inspect $i | grep -i ipaddress | grep -v null | cut -d ':' -f 2; done
+for i in `docker ps -q`; do echo $i; echo " : "; docker inspect $i | grep -i ipaddress | grep -v null | cut -d ':' -f 2; done
 ```
 
 
