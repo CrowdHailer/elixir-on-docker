@@ -12,4 +12,5 @@ services:
       - ERLANG_COOKIE=asd&%rewss
     volumes:
       - .:/home/elixir/app
+      - ../app:/home/elixir/tokumei
     command: sh start.sh
