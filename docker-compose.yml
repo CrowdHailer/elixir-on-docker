@@ -11,5 +11,5 @@ services:
       - SERVICE_NAME=web
       - ERLANG_COOKIE=asd&%rewss
     volumes:
-      - .:/app
+      - .:/home/elixir/app
     command: sh start.sh

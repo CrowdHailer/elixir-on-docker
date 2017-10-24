@@ -38,8 +38,8 @@ defmodule WaterCooler.Application do
   end
 
   defp secure_port do
-    Application.get_env(:water_cooler, :secure_port)
-    |> get_value()
+    {p, ""} = System.get_env("SECURE_PORT") |> Integer.parse
+    p
   end
 
   defp get_value({:system, type, env_name, default}) do
