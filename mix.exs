@@ -3,6 +3,7 @@ defmodule WaterCooler.Mixfile do
 
   def project do
     [
+      # TODO make :www
       app: :water_cooler,
       version: "0.0.1",
       elixir: "~> 1.4",

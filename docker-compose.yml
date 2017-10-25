@@ -1,4 +1,4 @@
-version: '2'
+version: '3.1'
 
 services:
   web:
@@ -14,3 +14,11 @@ services:
       - .:/home/elixir/app
       - ../app:/home/elixir/tokumei
     command: sh start.sh
+    secrets:
+      - certfile
+      - keyfile
+secrets:
+  certfile:
+    file: ./secrets/certificate.pem
+  keyfile:
+    file: ./secrets/certificate_key.pem
