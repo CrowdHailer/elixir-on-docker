@@ -8,6 +8,7 @@ defmodule WaterCooler.WWW.HomePage do
   @impl Raxx.Server
   def handle_request(_request, _config) do
     body = home_page()
+
     Raxx.response(:ok)
     |> Raxx.set_header("content-type", "text/html")
     |> Raxx.set_body(body)

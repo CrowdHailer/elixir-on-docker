@@ -7,9 +7,15 @@ defmodule WaterCooler.WWW.SubscribeToMessages do
   @impl Raxx.Server
   def handle_request(_request, state) do
     {:ok, _} = ChatRoom.join()
-    {[Raxx.response(:ok)
-    |> Raxx.set_header("content-type", "text/event-stream")
-    |> Raxx.set_body(true)], state}
+
+    {
+      [
+        Raxx.response(:ok)
+        |> Raxx.set_header("content-type", "text/event-stream")
+        |> Raxx.set_body(true)
+      ],
+      state
+    }
   end
 
   @impl Raxx.Server

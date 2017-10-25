@@ -4,9 +4,9 @@ defmodule WaterCooler.WWWTest do
   alias WaterCooler.{ChatRoom, WWW}
   require ChatRoom
 
-  setup  do
+  setup do
     # TODO use certificate helpers
-    {:ok, service} = Ace.HTTP.Service.start_link({WWW, :config}, [port: 0, cleartext: true])
+    {:ok, service} = Ace.HTTP.Service.start_link({WWW, :config}, port: 0, cleartext: true)
     {:ok, port} = Ace.HTTP.Service.port(service)
     {:ok, %{port: port}}
   end
@@ -32,14 +32,15 @@ defmodule WaterCooler.WWWTest do
     ChatRoom.join()
     {:ok, response} = HTTPoison.post("localhost:#{port}/", "message=Hello")
     assert response.status_code == 303
-    assert_receive ChatRoom.post("Hello"), 1_000
+    assert_receive ChatRoom.post("Hello"), 1000
   end
+
   #
   test "Update is streamed to client", %{port: port} do
     {:ok, %{id: _ref}} = HTTPoison.get("localhost:#{port}/updates", %{}, stream_to: self())
 
-    assert_receive %{code: 200}, 1_000
-    assert_receive %{headers: headers}, 1_000
+    assert_receive %{code: 200}, 1000
+    assert_receive %{headers: headers}, 1000
     assert "chunked" == :proplists.get_value("transfer-encoding", headers)
 
     ChatRoom.publish("Greetings!")
@@ -47,5 +48,4 @@ defmodule WaterCooler.WWWTest do
     {event, _} = ServerSentEvent.parse(chunk)
     assert %{type: "chat", lines: ["Greetings!"]} = event
   end
-
 end

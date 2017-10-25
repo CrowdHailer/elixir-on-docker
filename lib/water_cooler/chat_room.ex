@@ -11,6 +11,7 @@ defmodule WaterCooler.ChatRoom do
     for client <- :pg2.get_members(room) do
       send(client, {WaterCooler.ChatRoom, message})
     end
+
     {:ok, message}
   end
 
