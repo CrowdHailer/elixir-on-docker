@@ -2,6 +2,8 @@
 
 Cloud native chat application built with Elixir.
 
+Set up as an example application to deploy to docker cloud environments
+
 ### Features
 
 - Automatic clustering when deployed on docker-cloud

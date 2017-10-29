@@ -18,8 +18,10 @@ defmodule WWW.Mixfile do
 
   defp deps do
     [
-      {:ace, "~> 0.15.0"},
+      {:ace, "~> 0.15.2"},
+      {:tokumei, github: "CrowdHailer/tokumei", branch: "raxx-helpers", sparse: "app"},
       {:server_sent_event, "~> 0.2.0"},
+      {:mime, "~> 1.1"},
       {:exsync, "~> 0.2.1"},
       {:wobserver, "~> 0.1.8"}
     ]
