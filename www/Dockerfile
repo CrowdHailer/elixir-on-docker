@@ -6,13 +6,14 @@ ARG CONTAINER_USER='elixir'
 
 ARG APP_DIR=/home/"${CONTAINER_USER}"/app
 
-RUN useradd -m -u 1000 -s /usr/bin/bash "${CONTAINER_USER}"
+# RUN useradd -m -u 1000 -s /usr/bin/bash "${CONTAINER_USER}"
 
-USER "${CONTAINER_USER}"
+# USER "${CONTAINER_USER}"
 
 WORKDIR "${APP_DIR}"
 
 RUN mix local.hex --force && mix local.rebar --force
 # TODO get + build deps
 
-CMD elixir --sname app --cookie $ERLANG_COOKIE -S mix run --no-halt
+COPY . ./
+CMD ["sh", "bin/start"]

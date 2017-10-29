@@ -8,7 +8,6 @@ services:
     environment:
       - PORT=8080
       - SECURE_PORT=8443
-      - SERVICE_NAME=www
       - ERLANG_COOKIE=asd&%rewss
     volumes:
       - ./www:/home/elixir/app

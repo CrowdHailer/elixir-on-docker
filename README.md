@@ -23,10 +23,3 @@ for i in `docker ps -q`; do echo $i; echo " : "; docker inspect $i | grep -i ipa
 ```
 docker-compose run web mix test
 ```
-
-## TODO
-
-- use registry
-- Add Spec
-- Add coverage
-- Add live reloading

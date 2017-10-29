@@ -10,14 +10,18 @@ defmodule WWW.Application do
     {:ok, secure_port} = env.secure_port
 
     IO.inspect("---------------")
+    IO.inspect(Node.self)
     IO.inspect(Node.get_cookie)
+    Node.connect(:"app@www-1")
+    Node.connect(:"app@www-2")
+    Node.connect(:"app@www-3")
+    IO.inspect(Node.list)
 
     options = [port: secure_port, certfile: "/run/secrets/certfile", keyfile: "/run/secrets/keyfile"]
 
     children = [
-      # worker(WWW, [[port: port()]], id: :http),
-      # worker(WWW, [[port: secure_port(), tls: tls_options]], id: :https),
-      supervisor(Ace.HTTP.Service, [{WWW, :config}, options]),
+      supervisor(Ace.HTTP.Service, [{WWW, :config}, [port: 8080, cleartext: true]], id: :www_cleartext),
+      supervisor(Ace.HTTP.Service, [{WWW, :config}, options], id: :www_secure),
     ]
 
     opts = [strategy: :one_for_one, name: WaterCooler.Supervisor]
