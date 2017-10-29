@@ -14,6 +14,7 @@ services:
       - ./www:/home/elixir/app
     ports:
       - "8443:8443"
+      - "4001:4001"
     secrets:
       - certfile
       - keyfile
