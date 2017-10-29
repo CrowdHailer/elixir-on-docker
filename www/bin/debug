@@ -1,0 +1,1 @@
+iex --sname debug --cookie $ERLANG_COOKIE 

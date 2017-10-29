@@ -23,3 +23,12 @@ Visit [http://localhost:8080/](http://localhost:8080/)
 ```
 docker-compose run integration mix test
 ```
+
+## Connect iex session
+
+```sh
+$ docker exec -it <container-id> sh debug
+
+# iex shell
+iex(debug@<hostname>)1> Node.connect(:"app@<hostname>")
+```
