@@ -1,25 +1,23 @@
 # WaterCooler
 
-Example chat application built with [Tokumei](https://hex.pm/packages/tokumei).
+Cloud native chat application built with Elixir.
+
+### Features
+
+- Automatic clustering when deployed on docker-cloud
+- TLS(ssl) certificates stored in docker-compose secrets
+- Surface/integration testing.
 
 ## Getting started
 
 ```
-cd water_cooler
-docker-compose up -d
-docker-compose scale web=3
+docker-compose up
 ```
 
-Visit port 8080 on one of the running docker containers
+Visit [http://localhost:8080/](http://localhost:8080/)
+
+## Run integration tests
 
 ```
-for i in `docker ps -q`; do echo $i; echo " : "; docker inspect $i | grep -i ipaddress | grep -v null | cut -d ':' -f 2; done
-```
-
-
-## Run tests
-
-
-```
-docker-compose run web mix test
+docker-compose run integration mix test
 ```

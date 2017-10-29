@@ -12,11 +12,20 @@ services:
     volumes:
       - ./www:/home/elixir/app
     ports:
+      - "8080:8080"
       - "8443:8443"
       - "4001:4001"
     secrets:
       - certfile
       - keyfile
+  integration:
+    build:
+      context: "./integration"
+      dockerfile: "Dockerfile"
+    volumes:
+      - ./integration:/home/elixir/app
+    depends_on:
+      - "www"
 secrets:
   certfile:
     file: ./secrets/certificate.pem
