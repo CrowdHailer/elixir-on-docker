@@ -1,7 +1,7 @@
-defmodule WaterCooler.WWW.SubscribeToMessages do
+defmodule WWW.SubscribeToMessages do
   use Raxx.Server
 
-  alias WaterCooler.ChatRoom
+  alias WWW.ChatRoom
   require ChatRoom
 
   @impl Raxx.Server

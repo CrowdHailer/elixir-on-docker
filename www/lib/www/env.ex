@@ -1,4 +1,4 @@
-defmodule WaterCooler.WWW.Env do
+defmodule WWW.Env do
   # use Env
   #
   # setting :secure_port, :integer

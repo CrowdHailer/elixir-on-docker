@@ -1,4 +1,4 @@
-defmodule WaterCooler.Mixfile do
+defmodule WWW.Mixfile do
   use Mix.Project
 
   def project do
@@ -14,13 +14,12 @@ defmodule WaterCooler.Mixfile do
   end
 
   def application do
-    [extra_applications: [:logger], mod: {WaterCooler.Application, []}]
+    [extra_applications: [:logger], mod: {WWW.Application, []}]
   end
 
   defp deps do
     [
       {:ace, "~> 0.15.0"},
-      {:tokumei, path: "../tokumei"},
       {:server_sent_event, "~> 0.2.0"},
       {:exsync, "~> 0.2.0"},
       {:wobserver, "~> 0.1.8"}

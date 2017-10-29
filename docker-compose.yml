@@ -1,19 +1,19 @@
 version: '3.1'
 
 services:
-  web:
+  www:
     build:
-      context: "."
+      context: "./www"
       dockerfile: "Dockerfile"
     environment:
       - PORT=8080
       - SECURE_PORT=8443
-      - SERVICE_NAME=web
+      - SERVICE_NAME=www
       - ERLANG_COOKIE=asd&%rewss
     volumes:
-      - .:/home/elixir/app
-      - ../app:/home/elixir/tokumei
-    command: sh start.sh
+      - ./www:/home/elixir/app
+    ports:
+      - "8443:8443"
     secrets:
       - certfile
       - keyfile

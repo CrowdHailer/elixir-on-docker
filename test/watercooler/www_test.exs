@@ -1,4 +1,4 @@
-defmodule WaterCooler.WWWTest do
+defmodule WWWTest do
   use ExUnit.Case
 
   alias WaterCooler.{ChatRoom, WWW}

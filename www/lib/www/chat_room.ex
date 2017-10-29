@@ -1,4 +1,4 @@
-defmodule WaterCooler.ChatRoom do
+defmodule WWW.ChatRoom do
   @default_room :chat
 
   defmacro post(content) do
@@ -9,7 +9,7 @@ defmodule WaterCooler.ChatRoom do
 
   def publish(message, room \\ @default_room) do
     for client <- :pg2.get_members(room) do
-      send(client, {WaterCooler.ChatRoom, message})
+      send(client, {WWW.ChatRoom, message})
     end
 
     {:ok, message}

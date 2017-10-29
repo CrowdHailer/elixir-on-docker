@@ -1,4 +1,4 @@
-defmodule WaterCooler.WWW.HomePage do
+defmodule WWW.HomePage do
   use Raxx.Server
 
   require EEx

@@ -1,2 +1,0 @@
-defmodule WaterCooler do
-end

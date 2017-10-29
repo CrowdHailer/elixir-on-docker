@@ -1,4 +1,4 @@
-FROM elixir:1.5.1
+FROM elixir:1.5.2
 
 RUN apt-get update && apt-get install -y inotify-tools
 
@@ -13,3 +13,6 @@ USER "${CONTAINER_USER}"
 WORKDIR "${APP_DIR}"
 
 RUN mix local.hex --force && mix local.rebar --force
+# TODO get + build deps
+
+CMD elixir --sname app --cookie $ERLANG_COOKIE -S mix run --no-halt
