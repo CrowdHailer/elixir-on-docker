@@ -1,34 +1,94 @@
-# WaterCooler
+# Elixir on Docker
 
-Cloud native chat application built with Elixir.
+**Quickly get started developing clustered Elixir applications for cloud environments.**
 
-Set up as an example application to deploy to docker cloud environments
+This project template provides a set of sensible defaults for a new application designed to be cloud native.
+It includes:
 
-### Features
+- A main service `www`, this serves the main content offered by your application.
+- Secure HTTP/2 content delivery with [Ace]() web server.
+- Code reloading in development environment using [ExSync]().
+- Automatic clustering. Setup for [docker-cloud]() other environments coming soon.
+- Web based metrics, monitoring and observing with [Wobserver](https://github.com/shinyscorpion/wobserver).
+- Documentation driven development with [Raxx.Blueprint]().
+- Integration test suit running from the `integration` service.
 
-- Automatic clustering when deployed on docker-cloud
-- TLS(ssl) certificates stored in docker-compose secrets
-- Surface/integration testing.
+## Get Started
 
-## Getting started
+To use this template docker and docker-compose need to be installed on your machine.
+
+1. Clone this repository.
+*Change `project-name` to your projects name.*
+```
+git clone <url> <project-name>
+cd <project-name>
+```
+
+2. Delete git history.
+```
+rm -r .git
+```
+
+3. Start all services
+```
+docker-compose up
+```
+
+4. View your running project at http://localhost:8080
+
+### ^^TODO delete this introduction.^^
+---
+
+### Run all services
 
 ```
 docker-compose up
 ```
 
-Visit [http://localhost:8080/](http://localhost:8080/)
+*Use `-d` to run in the background.*
+*Use `--build` to ensure images are rebuilt.*
+*Use `docker-compose down` to stop all services.*
 
-## Run integration tests
+- HTTP endpoint available at: [http://localhost:8080/](http://localhost:8080/)
+- HTTPs endpoint available at: [https://localhost:8443/](https://localhost:8443/)
+- Wobserver dashboard available at: [http://localhost:4001/](http://localhost:4001/)
+
+### Fetch dependencies
 
 ```
-docker-compose run integration mix test
+docker-compose run www mix deps.get
 ```
 
-## Connect iex session
+*All mix tasks for a service can be run this way, such as tests for a single service.*
+
+### Run integration tests
+
+```
+docker-compose \
+-c docker-compose.yml \
+-c docker-compose-test.yml \
+run integration mix test
+```
+
+*The `-c` flag specifies a compose file to use when starting services.*
+
+### Attach iex session
 
 ```sh
-$ docker exec -it <container-id> sh debug
+docker ps
+# Find container-id to attach to.
 
-# iex shell
+docker exec -it <container-id> sh bin/debug
+
+# in iex shell
 iex(debug@<hostname>)1> Node.connect(:"app@<hostname>")
 ```
+
+### Publish a new image
+
+### TODO
+
+- instructions to tag image
+- get started on cloud
+- add peer names as a config variable
+- move to exposes 

@@ -16,4 +16,12 @@ RUN mix local.hex --force && mix local.rebar --force
 # TODO get + build deps
 
 COPY . ./
+
+# Cleartext port
+EXPOSE 8080
+# Secure port
+EXPOSE 8443
+# Wobserver port
+EXPOSE 4001
+
 CMD ["sh", "bin/start"]
