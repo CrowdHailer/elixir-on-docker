@@ -3,7 +3,7 @@
 <head>
   <title>Elixir on Docker</title>
 </head>
-<body onload="ready();">
+<body>
   <h1>Hello, World!</h1>
 </body>
 </html>

@@ -6,11 +6,11 @@ This project template provides a set of sensible defaults for a new application 
 It includes:
 
 - A main service `www`, this serves the main content offered by your application.
-- Secure HTTP/2 content delivery with [Ace]() web server.
-- Code reloading in development environment using [ExSync]().
-- Automatic clustering. Setup for [docker-cloud]() other environments coming soon.
+- Secure HTTP/2 content delivery with [Ace](https://github.com/crowdhailer/ace) web server.
+- Code reloading in development environment using [ExSync](https://github.com/falood/exsync).
+- Automatic clustering. Setup for [docker-cloud](http://cloud.docker.com/) other environments coming soon.
 - Web based metrics, monitoring and observing with [Wobserver](https://github.com/shinyscorpion/wobserver).
-- Documentation driven development with [Raxx.Blueprint]().
+- Documentation driven development with [Raxx.Blueprint](https://hexdocs.pm/tokumei/Raxx.Blueprint.html#content).
 - Integration test suit running from the `integration` service.
 
 ## Get Started
