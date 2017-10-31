@@ -83,12 +83,3 @@ docker exec -it <container-id> sh bin/debug
 # in iex shell
 iex(debug@<hostname>)1> Node.connect(:"app@<hostname>")
 ```
-
-### Publish a new image
-
-### TODO
-
-- instructions to tag image
-- get started on cloud
-- add peer names as a config variable
-- move to exposes
