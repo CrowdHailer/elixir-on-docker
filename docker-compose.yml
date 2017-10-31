@@ -6,28 +6,11 @@ services:
       context: "./www"
       dockerfile: "Dockerfile"
     environment:
-      - PORT=8080
-      - SECURE_PORT=8443
-      - ERLANG_COOKIE=asd&%rewss
+      - ERLANG_COOKIE=changeme
+      - PEER_LIST=app@www-1 app@www-2
     volumes:
       - ./www:/home/elixir/app
     ports:
       - "8080:8080"
       - "8443:8443"
       - "4001:4001"
-    secrets:
-      - certfile
-      - keyfile
-  integration:
-    build:
-      context: "./integration"
-      dockerfile: "Dockerfile"
-    volumes:
-      - ./integration:/home/elixir/app
-    depends_on:
-      - "www"
-secrets:
-  certfile:
-    file: ./secrets/certificate.pem
-  keyfile:
-    file: ./secrets/certificate_key.pem

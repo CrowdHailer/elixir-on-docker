@@ -65,8 +65,8 @@ docker-compose run www mix deps.get
 
 ```
 docker-compose \
--c docker-compose.yml \
--c docker-compose-test.yml \
+-f docker-compose.yml \
+-f docker-compose-test.yml \
 run integration mix test
 ```
 
@@ -91,4 +91,4 @@ iex(debug@<hostname>)1> Node.connect(:"app@<hostname>")
 - instructions to tag image
 - get started on cloud
 - add peer names as a config variable
-- move to exposes 
+- move to exposes

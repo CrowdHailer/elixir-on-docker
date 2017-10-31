@@ -1,0 +1,11 @@
+version: '3.1'
+
+services:
+  integration:
+    build:
+      context: "./integration"
+      dockerfile: "Dockerfile"
+    volumes:
+      - ./integration:/home/elixir/app
+    depends_on:
+      - "www"

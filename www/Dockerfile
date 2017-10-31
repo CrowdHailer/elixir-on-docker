@@ -13,7 +13,7 @@ ARG APP_DIR=/home/"${CONTAINER_USER}"/app
 WORKDIR "${APP_DIR}"
 
 RUN mix local.hex --force && mix local.rebar --force
-# TODO get + build deps
 
 COPY . ./
+
 CMD ["sh", "bin/start"]

@@ -1,20 +1,12 @@
 defmodule WWW.Env do
-  # use Env
-  #
-  # setting :secure_port, :integer
-  # setting :service_name, :string
-
-  @enforce_keys [
-    :service_name,
-    :secure_port
+  settings = [
+    peer_list: {:list, :atom}
   ]
+
+  @enforce_keys Keyword.keys(settings)
 
   defstruct @enforce_keys
 
-  settings = [
-    service_name: :string,
-    secure_port: :integer
-  ]
 
   def read() do
     values =
@@ -31,8 +23,24 @@ defmodule WWW.Env do
     struct(__MODULE__, values)
   end
 
+  defp cast({:list, type}, raw) do
+    Enum.reduce_while(String.split(raw), {:ok, []}, fn
+      (part, {:ok, values}) ->
+        case cast(type, part) do
+          {:ok, next} ->
+            {:cont, {:ok, values ++ [next]}}
+          {:error, reason} ->
+            {:halt, {:error, reason}}
+        end
+    end)
+  end
+
   defp cast(:string, raw) do
     {:ok, raw}
+  end
+
+  defp cast(:atom, raw) do
+    {:ok, String.to_atom(raw)}
   end
 
   defp cast(:integer, raw) do

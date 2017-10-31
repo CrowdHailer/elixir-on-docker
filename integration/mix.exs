@@ -19,7 +19,6 @@ defmodule Integration.MixProject do
 
   defp deps do
     [
-      {:server_sent_event, "~> 0.2.0"},
       {:httpoison, "~> 0.13.0"},
     ]
   end
