@@ -2,6 +2,8 @@
 
 **Quickly get started developing clustered Elixir applications for cloud environments.**
 
+[See a walkthrough of developing a chat application from this template](http://crowdhailer.me/talks/2017-10-31/live-coded-chat-app-in-45-minutes/)
+
 This project template provides a set of sensible defaults for a new application designed to be cloud native.
 It includes:
 
