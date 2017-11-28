@@ -12,7 +12,7 @@ It includes:
 - Code reloading in development environment using [ExSync](https://github.com/falood/exsync).
 - Automatic clustering. Setup for [docker-cloud](http://cloud.docker.com/) other environments coming soon.
 - Web based metrics, monitoring and observing with [Wobserver](https://github.com/shinyscorpion/wobserver).
-- Documentation driven development with [Raxx.Blueprint](https://hexdocs.pm/tokumei/Raxx.Blueprint.html#content).
+- Documentation driven development with [Raxx.ApiBlueprint](https://hex.pm/packages/raxx_api_blueprint).
 - Integration test suit running from the `integration` service.
 
 ## Get Started
