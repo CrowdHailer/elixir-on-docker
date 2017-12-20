@@ -16,4 +16,6 @@ RUN mix local.hex --force && mix local.rebar --force
 
 COPY . ./
 
+RUN mix deps.get
+
 CMD ["sh", "bin/start"]
