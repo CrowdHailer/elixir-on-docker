@@ -19,27 +19,28 @@ It includes:
 
 To use this template docker and docker-compose need to be installed on your machine.
 
-1. Clone this repository.
-*Change `project-name` to your projects name.*
+### Clone this repository
+
+*Change project-name to your projects name.*
+
 ```
 git clone <url> <project-name>
 cd <project-name>
 ```
 
-2. Delete git history.
+Delete git history.
+
 ```
 rm -r .git
 ```
 
-3. Start all services
+### Fetch dependencies
+
 ```
-docker-compose up
+docker-compose run --rm www mix deps.get
 ```
 
-4. View your running project at http://localhost:8080
-
-### ^^TODO delete this introduction.^^
----
+*All mix tasks for a service can be run this way, such as tests for a single service.*
 
 ### Run all services
 
@@ -55,13 +56,6 @@ docker-compose up
 - HTTPs endpoint available at: [https://localhost:8443/](https://localhost:8443/)
 - Wobserver dashboard available at: [http://localhost:4001/](http://localhost:4001/)
 
-### Fetch dependencies
-
-```
-docker-compose run www mix deps.get
-```
-
-*All mix tasks for a service can be run this way, such as tests for a single service.*
 
 ### Run integration tests
 
@@ -69,10 +63,10 @@ docker-compose run www mix deps.get
 docker-compose \
 -f docker-compose.yml \
 -f docker-compose-test.yml \
-run integration mix test
+run integration /bin/bash -c "mix deps.get; mix test"
 ```
 
-*The `-c` flag specifies a compose file to use when starting services.*
+*The `-f` flag specifies a compose file to use when starting services.*
 
 ### Attach iex session
 
