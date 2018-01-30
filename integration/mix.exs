@@ -19,7 +19,7 @@ defmodule Integration.MixProject do
 
   defp deps do
     [
-      {:httpoison, "~> 0.13.0"},
+      {:httpoison, "~> 1.0"}
     ]
   end
 end

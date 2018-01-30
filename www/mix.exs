@@ -21,7 +21,6 @@ defmodule WWW.Mixfile do
       {:ace, "~> 0.15.2"},
       {:raxx_static, "~> 0.5.0"},
       {:raxx_api_blueprint, "~> 0.1.0"},
-      {:server_sent_event, "~> 0.2.0"},
       {:exsync, "~> 0.2.1"},
       {:wobserver, "~> 0.1.8"}
     ]

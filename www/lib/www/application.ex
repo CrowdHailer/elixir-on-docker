@@ -21,18 +21,18 @@ defmodule WWW.Application do
 
     children = [
       supervisor(Ace.HTTP.Service, [{WWW, :config}, cleartext_options], id: :www_cleartext),
-      supervisor(Ace.HTTP.Service, [{WWW, :config}, secure_options], id: :www_secure),
+      supervisor(Ace.HTTP.Service, [{WWW, :config}, secure_options], id: :www_secure)
     ]
 
-    opts = [strategy: :one_for_one, name: WaterCooler.Supervisor]
+    opts = [strategy: :one_for_one, name: WWW.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
-   defp certificate_path() do
-     Application.app_dir(:www, "priv/localhost/certificate.pem")
-   end
+  defp certificate_path() do
+    Application.app_dir(:www, "priv/localhost/certificate.pem")
+  end
 
-   defp certificate_key_path() do
-     Application.app_dir(:www, "priv/localhost/certificate_key.pem")
-   end
+  defp certificate_key_path() do
+    Application.app_dir(:www, "priv/localhost/certificate_key.pem")
+  end
 end

@@ -7,7 +7,6 @@ defmodule WWW.Env do
 
   defstruct @enforce_keys
 
-
   def read() do
     values =
       for {setting, type} <- unquote(settings) do
@@ -24,14 +23,14 @@ defmodule WWW.Env do
   end
 
   defp cast({:list, type}, raw) do
-    Enum.reduce_while(String.split(raw), {:ok, []}, fn
-      (part, {:ok, values}) ->
-        case cast(type, part) do
-          {:ok, next} ->
-            {:cont, {:ok, values ++ [next]}}
-          {:error, reason} ->
-            {:halt, {:error, reason}}
-        end
+    Enum.reduce_while(String.split(raw), {:ok, []}, fn part, {:ok, values} ->
+      case cast(type, part) do
+        {:ok, next} ->
+          {:cont, {:ok, values ++ [next]}}
+
+        {:error, reason} ->
+          {:halt, {:error, reason}}
+      end
     end)
   end
 
