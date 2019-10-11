@@ -1,9 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Elixir on Docker</title>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.0/css/mdb.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.0/js/mdb.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
 </head>
-<body>
-  <h1>Hello, World!</h1>
+
+<body style="background-color: rgb(38,50,56)">
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color:rgb(32, 42, 46);">
+        <a class="navbar-brand mb-0 h1" style="color:rgb(195, 238, 192);" href="#">EOD</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" style="color:rgb(195, 238, 192)">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="color:rgb(195, 238, 192)">
+                        Option
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Option 1</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Option 2</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Option 3</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="color:rgb(195, 238, 192)">
+                        Tab
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Tab 1</a>
+                        <a class="dropdown-item" href="#">Tab 2</a>
+                        <a class="dropdown-item" href="#">Tab 3</a>
+                        <a class="dropdown-item" href="#">Tab 4</a>
+                        <a class="dropdown-item" href="#">Tab 5</a>
+                        <a class="dropdown-item" href="#">Tab 6</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Introduction Page-->
+    <div class="container-fluid" style="color:rgb(195, 238, 192); margin-bottom: 180px; margin-top: 70px;">
+        <div class="row">
+            <div class="col-md">
+                <h2>Welcome to Elixir On Docker</h2>
+                <p>This project template provides a set of sensible defaults for a new application designed to be cloud native. It includes:
+                  <ol>
+                    <li>A main service www, this serves the main content offered by your application.</li>
+                    <li>Secure HTTP/2 content delivery with Ace web server.</li>
+                    <li>Code reloading in development environment using ExSync.</li>
+                    <li>Automatic clustering. Setup for docker-cloud other environments coming soon.</li>
+                    <li>Web based metrics, monitoring and observing with Wobserver.</li>
+                    <li>Documentation driven development with Raxx.ApiBlueprint.</li>
+                    <li>Integration test suit running from the integration service.</li>
+                  </ol>
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
+<!-- End of Usability -->
+<footer class="page-footer font-small special-color-dark fixed-bottom pt-4">
+    <div class="container">
+        <!-- Grid row-->
+        <div class="row">
+            <!-- Grid column -->
+            <div class="col-md-12 py-0">
+                <div class="mb-5 flex-center">
+                    <!-- Facebook -->
+                    <a class="fb-ic">
+                        <i class="fab fa-facebook-f fa-lg mr-md-5 mr-3 fa-2x" style="color:rgb(195, 238, 192)"> </i>
+                    </a>
+                    <!-- Twitter -->
+                    <a class="tw-ic">
+                        <i class="fab fa-twitter fa-lg mr-md-5 mr-3 fa-2x" style="color:rgb(195, 238, 192)"> </i>
+                    </a>
+                    <!--Linkedin -->
+                    <a class="li-ic" target="_blank">
+                        <i class="fab fa-linkedin-in fa-lg mr-md-5 mr-3 fa-2x" style="color:rgb(195, 238, 192)">
+                        </i>
+                    </a>
+                    <!--Instagram-->
+                    <a class="ins-ic">
+                        <i class="fab fa-instagram fa-lg mr-md-5 mr-3 fa-2x" style="color:rgb(195, 238, 192)"> </i>
+                    </a>
+                    <!-- Github -->
+                    <a class="git-ic" href="https://github.com/CrowdHailer/elixir-on-docker" target="_blank">
+                        <i class="fab fa-github fa-lg mr-md-5 mr-3 fa-2x" style="color:rgb(195, 238, 192)"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Grid column -->
+        </div>
+        <!-- Grid row-->
+    </div>
+    <div class="footer-copyright text-center py-3 " style="color:rgb(195, 238, 192)">
+        Last Accessed On: 
+        <span id="dt" style="font-weight: bold">
+            <script type="text/javascript">
+                var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                    'August', 'September', 'October', 'November', 'December'];
+                var tomorrow = new Date();
+                document.getElementById("dt").innerHTML = "Last Accessed On: " + month[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear() + " " + (("0" + tomorrow.getHours()).slice(-2)) + ":" + (("0" + tomorrow.getMinutes()).slice(-2));;
+            </script>
+        </span>
+    </div>
+</footer>
 </html>
